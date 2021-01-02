@@ -1,40 +1,120 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+	<title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown>
+				<textarea data-template>
+					## The CAP Theorem
+					<img src="./examples/assets/Database.png" alt="" width="320px" height="320px"  srcset="">
+				</textarea>
+			</section>
+
+			<section>
+				<img src="./examples/assets/cap-theorem.png" alt="" width="640px" height="640px" srcset="">
+			</section>
+
+			<section>
+				<span style="color:rgb(0, 255, 55)">Consistency:</span>
+				Every read receives the most recent write or an error
+			</section>
+
+			<section>
+				<span style="color:rgb(0, 255, 55)">Availability:</span>
+				Every request receives a (non-error) response, without the guarantee that it contains
+				the
+				most recent write
+			</section>
+
+			<section>
+				<span style="color:rgb(0, 255, 55)">Partition tolerance:</span> The system continues to operate despite
+				an
+				arbitrary number of messages being
+				dropped (or delayed) by the network between nodes
+			</section>
+
+			<section>
+				Available Combinations<br>
+				<ul>
+					<li style="align-items: flex-start; font-size: 16px;">
+						CP (consistency and partition tolerance): Data is consistent among all the nodes and the nodes
+						maintain partition tolerance. The de-sync node will not accept any request. Some requests will
+						be
+						dropped instead
+						of returning inconsistent (the most recent) information.
+					</li>
+					<br>
+					<li style="align-items: flex-start; font-size: 16px;">
+						AP (availability and partition tolerance): The distributed system is highly available and the
+						system
+						is
+						partition-tolerant, so every read request will not guarantee the most recent information but
+						will be
+						processed.
+						Examples: Voldemort, SimpleDB, CouchDB.
+					</li>
+					<br>
+					<li style="align-self: start;; font-size: 16px;">
+						CA (Consistency and availability): This is not possible in any distributed architecture. It
+						can
+						only
+						be
+						found in some non-scalable monolithic architecture.
+					</li>
+				</ul>
+			</section>
+			<section>
+
+				Conclusion
+				<p style="text-align: justify; font-size: 32px;">
+					Architects constructing microservices must be familiar with CAP theorem, otherwise they will fall
+					prey
+					to its constraints by accident rather than by design. By understanding CAP theorem, educated
+					decisions
+					can be made to determine whether consistency or availability should be prioritized when (not if)
+					there
+					are communication failures between services.
+				</p>
+				<img src="./examples/assets/108255623.jpg" alt="" width="320px" height="320px" srcset="">
+
+
+			</section>
+
+
 		</div>
+	</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
 </html>
